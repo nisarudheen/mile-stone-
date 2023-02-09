@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="sale_button_view_inherit">
+        <field name="name">sale.order.view.inherit1</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form//header//button[@name='action_quotation_send']" position="after" >
+                <button name="create_milestone" string="Create Milestone" type="object" attrs="{'invisible': [('is_update','=',True)]}"/>
+            </xpath>
+            <xpath expr="//form//header//button[@name='action_quotation_send']" position="after" >
+                <button name="update_milestone" string="Update" type="object" attrs="{'invisible': [('is_update','=',False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_update" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="project_id" attrs="{'invisible':1}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
